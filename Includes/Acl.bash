@@ -16,7 +16,9 @@ sudo setfacl -"$1" "$2":"$3" "$4"
 
 #DelAcl()
 #{
-#
+ username=$1
+ folder=$2
+ sudo setfacl -x $username $folder
 #}
 
 GetAcl()
