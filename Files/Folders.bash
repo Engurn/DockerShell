@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 source ./Config.bash
+
+list=$folders
+  if [ ! -z "$1" ]; then
+    list="$1"
+  else
+    list=(
+    "$RootDir/Docker/Containers"
+    "$RootDir/Docker/Services"
+    "$RootDir/Docker/Scripts"
+    )
+  fi
+
 FolderCreation()
 {
     if [ -d "$1" ]; then
@@ -9,20 +21,6 @@ FolderCreation()
         echo "folder : $1 Created"
         fi
 }
-
-
-list=$folders
-  if [ ! -z "$1" ]; then
-    list="$1"
-  else
-    list=(
-    "/Engine/Docker/Containers"
-    "/Engine/Docker/Logs"
-    "/Engine/Docker/Services"
-    )
-  fi
-
-
 
   # Iterate over the folders of the array using a for loop
   # Iterate over the folders of the array using a for loop
@@ -38,11 +36,6 @@ sudo chown -R root:docker $folders
 sudo chmod -R ug=rwx,o-rwx $folders
 #sudo bash /Eshell/P/Files/Logs.bash --new-log "Folder $folders has been created"
 done
-
-#Generate Permissions
-chown -R root:docker $RootDir
-chmod -R ug=rwx,o-rwx $RootDir
-#Add Aditional Folders permisisons manually
 
 
 

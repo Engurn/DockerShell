@@ -4,11 +4,15 @@ source ./Config.bash
 #Generate New Groups
 #The Following Functions will require
 # Sudo permissions to create or modify system Changes
+
+groups=("docker" "member" "editor")
+
 GenerateGroups()
 {
 for group in "${groups[@]}"
 do
   NewGroup "$group"
+  echo "${group} has been created"
 done
 }
 
@@ -53,6 +57,11 @@ DeleteGroup()
   sudo delgroup "$1"
 }
 
+
+ if [ "$1" == "--new-group"]; then
+   GenerateGroups;
+   else
+     echo "Invalid command"
 
 
 
