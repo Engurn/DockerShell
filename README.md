@@ -1,5 +1,9 @@
 # EngineShell
 
+[/ Version 1.0 - 08/01/2024 /]: # (Original Readme Designed)
+[/ Version 1.0.1 - 14/02/2024 /]: # (Minor Changes Added by Adding further content to readme file offering details on what is included)
+
+
 Engine Shell is a work in progress (WIP) package, 
 although designed for my own personal of use this project is free to use,
 Please be aware that Engine Shell comes with no warranty or responsibility for the use of these sets of scripts
@@ -13,6 +17,7 @@ Please be aware that Engine Shell comes with no warranty or responsibility for t
   * Groups
   * Folders
   * Acl Permissions
+  * Samba Support and Conf files.
 * Installation Scripts for docker which include
   * Network Creation Scripts to create networks such as 
     * Web
