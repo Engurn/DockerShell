@@ -19,7 +19,7 @@ fi
 #Download config File
 
 #Copy Files to /Engine/Core
-Files=("Config" "Boot")
+Files=("Config" "Boot" "Files/Acl.bash" "Files/Confirmation.bash")
 
   for File in "${Files[@]}"
   do
