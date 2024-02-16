@@ -7,12 +7,13 @@ SambaFolder="$RootDir/Samba"
 # This script is a cli based System Installation file.
 source Files/Confirmations.bash
 Agreement
-echo "Your Answer is : $answer"
-#
-##Generate Groups
-#sudo bash $CoreFiles/Files/Groups.bash --new-group
-##Step 2
-## Create Folders for EngineDocker And Apply permissions
-#sudo bash $CoreFiles/Files/Folders.bash
+
+if [ "$consent" == "true" ]; then
+  #Generate Groups
+  sudo bash $CoreFiles/Files/Groups.bash --new-group
+  # Create Folders for EngineDocker And Apply permissions
+  sudo bash $CoreFiles/Files/Folders.bash
+fi
 
 #Set Samba Reference
+sudo bash /Engine/Files/Samba.bash

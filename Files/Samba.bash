@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-source ./Config.bash
+SambaFile=/etc/samba/smb.conf
+SambaLoader=/Engine/Files/Samba/Loader.bash
 
 SambaBackup()
 {
@@ -14,7 +15,6 @@ SambaBackup()
 AppendSamba()
 {
   if grep -q "^include = "$SambaLoader "$SambaFile"; then
-    echo "Match found"
   else
     sudo echo "include = $SambaLoader" >> "$SambaFile";
   fi
@@ -23,9 +23,12 @@ AppendSamba()
 
 
 if [  "$1" == "--new-install" ]; then
-SambaBackup "$SambaFile.backup" "$SambaFile"
-SambaBackup
-AppendSamba
+
+  if [ ! -f "$SambaFile.backup" ]; then
+    cp $SambaFile $SambaFile.backup
+  fi
+  AppendSamba
+#  From this Point users just need to create Seperate Samba FIles within the loader
 else
   echo "failed"
 fi

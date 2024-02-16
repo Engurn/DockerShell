@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-source ./Config.bash
 
 function Agreement()
 {
@@ -12,16 +11,19 @@ function Agreement()
   read answer
 
   if [ "$answer" = "I Consent" ]; then
-    echo "We Can Continue";
-    echo "-------------------------------------------"
+    consent=true
   else
-    echo "Invalid Response: Please Make sure you have wrote it is written (Case Sensitive)"
-    exit 0
+    consent=false
   fi
 }
 
 
 Options()
 {
-  echo "Please CHoose one of the following options in order to continue"
+  echo "The Following options listed Below Are Optional but are not required to function"
+  echo "Please visit https://github.com/EngineFw/EngineShell for more information"
+  echo "1: Create Additional Params with ACL Advanced Control List"
+  echo "2 Create an Additional Group for"
+  read Options
+
 }
