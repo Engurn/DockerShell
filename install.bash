@@ -1,23 +1,18 @@
 #!/usr/bin/env bash
 #Installer File to Setup EngineSHell v1
-
+RootDir="/Engine"
+CoreFiles="$RootDir/Core"
+Containers="$RootDir/Containers"
+SambaFolder="$RootDir/Samba"
 # This script is a cli based System Installation file.
-
-
-#Log test
-
-#Generate Groups
-sudo bash Files/Groups.bash
-#Step 2
-# Create Folders for EngineDocker And Apply permissions
-sudo bash Files/Folders.bash
-
-#Step 2
-#Copy Files to Folder ie /Engine/Scripts/
-sudo copy -R "boot.bash" "${RootDir}/Scripts/boot.bash"
-sudo copy -R "Config.bash" "${RootDir}/Scripts/Config.bash"
-sudo copy -R "Files/*" "${RootDir}/Scripts/Files"
-cd /Engine/Scripts
-#Create Aliases for Engine Scripts
+source Files/Confirmations.bash
+Agreement
+echo "Your Answer is : $answer"
+#
+##Generate Groups
+#sudo bash $CoreFiles/Files/Groups.bash --new-group
+##Step 2
+## Create Folders for EngineDocker And Apply permissions
+#sudo bash $CoreFiles/Files/Folders.bash
 
 #Set Samba Reference

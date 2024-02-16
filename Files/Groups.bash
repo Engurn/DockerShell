@@ -62,6 +62,6 @@ DeleteGroup()
    GenerateGroups;
    else
      echo "Invalid command"
-
+fi
 
 

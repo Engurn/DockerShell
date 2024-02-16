@@ -13,6 +13,7 @@ function Agreement()
 
   if [ "$answer" = "I Consent" ]; then
     echo "We Can Continue";
+    echo "-------------------------------------------"
   else
     echo "Invalid Response: Please Make sure you have wrote it is written (Case Sensitive)"
     exit 0
@@ -23,5 +24,4 @@ function Agreement()
 Options()
 {
   echo "Please CHoose one of the following options in order to continue"
-  
 }

@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-source ./Config.bash
+RootDir="/Engine"/
 
 list=$folders
   if [ ! -z "$1" ]; then
     list="$1"
   else
     list=(
-    "$RootDir/Docker/Containers"
-    "$RootDir/Docker/Services"
-    "$RootDir/Docker/Scripts"
+    "$RootDir/Docker/Containers/Sites"
+    "$RootDir/Docker/Containers/Services"
+    "$RootDir/Samba/Confs"
     )
   fi
 
