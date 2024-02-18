@@ -11,31 +11,21 @@ list=$folders
     "$RootDir/Samba/Confs"
     )
   fi
-
-FolderCreation()
+  
+FolderExist()
 {
-    if [ -d "$1" ]; then
-          echo "Sorry it seems the Folder ${1} Already Exists "
-          else
-        sudo mkdir -p "$1"
-        echo "folder : $1 Created"
-        fi
+  if [ -d "$1" ]; then
+echo "Folder $2 Exists"
+else
+  sudo mkdir -p $1
+  echo "Folder $1 is created"
+fi
 }
 
-  # Iterate over the folders of the array using a for loop
-  # Iterate over the folders of the array using a for loop
-#  Use @ within the for loop as a wildcard to choose all  the rows
-  for folders in "${list[@]}"
-  do
-      # Code to be executed for each folders
-      # check for empty folders.
-#      FolderCreation "${folders}";
-FolderCreation $folders
-
-sudo chown -R root:docker $folders
-sudo chmod -R ug=rwx,o-rwx $folders
-#sudo bash /Eshell/P/Files/Logs.bash --new-log "Folder $folders has been created"
-done
 
 
-
+if [ "$1" == "--new-folder" ]; then
+TestList $list2
+else
+echo "invalid Command"
+fi
