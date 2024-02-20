@@ -1,24 +1,17 @@
 #!/usr/bin/env bash
-source ./Config.bash
 
 #Generate New Groups
 #The Following Functions will require
 # Sudo permissions to create or modify system Changes
 
-groups=("docker" "member" "editor")
+#Unless created manually docker will Be Created
+groups=("docker" "member" "dev")
 
-GenerateGroups()
-{
-for group in "${groups[@]}"
-do
-  NewGroup "$group"
-  echo "${group} has been created"
-done
-}
 
 #This script will remove and
 # Recreate the Groups As Long as they
-# are not linked to a user.
+# are not linked to +
+# a user.
 ReinstateGroups()
 {
   for group in "${groups[@]}"
@@ -46,7 +39,15 @@ RemoveGroups()
 # to use Simply Call NewGroup "Groupname"
 NewGroup()
 {
+
+  if [ $(getent group ${1}) ]; then
+  echo "group $1 Already Exists"
+  else
   sudo addgroup "$1"
+   echo "${1} has been created"
+   ApplyGroups $1
+  fi
+
 }
 
 #This function will Delete Group
@@ -57,11 +58,22 @@ DeleteGroup()
   sudo delgroup "$1"
 }
 
+ApplyGroups()
+{
+  sudo usermod -aG $1 $USER
+  echo "Apply Group : $1 to user : $USER"
+}
 
- if [ "$1" == "--new-group"]; then
-   GenerateGroups;
+
+ if [ "$1" == "--new" ]; then
+   echo "Coming soon"
    else
-     echo "Invalid command"
+     echo "Number of groups found ${#groups[@]}"
+     for group in "${groups[@]}"
+     do
+       NewGroup "$group"
+
+     done
 fi
 
 
