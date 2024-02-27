@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#Keywords
+
 #group Creation
 
 SetGroups()
@@ -25,7 +27,7 @@ CreateFolders()
   for folder in "${folders[@]}";
   do
     if [ ! -d "${folder}" ]; then
-           sudo mkdir -p ${folder}
+           MakeFolder ${folder} --sudo
            echo "Folder ${folder} Has Been created"
     else
         echo "folder : ${folder} exists"
@@ -106,10 +108,20 @@ InstallTraefik()
   fi
 }
 
+MakeFolder()
+{
+#  $1 $foldername $2 as sudo
+  if [ "$2" == "--sudo" ];
+    sudo mkdir -p $1
+  else
+    mkdir -p $1
+  fi
+}
 DownloadTraefik()
 {
 
   if [ ! -f "${Containers}/traefik/docker-compose.yml" ]; then
+
      git clone https://github.com/Enginefw/traefik $Containers/traefik
   fi
 }
@@ -118,4 +130,14 @@ GenerateFile()
 {
   file=$1
   touch $file
+}
+
+AppendSamba()
+{
+#  Check if the file already Includeds  the following line of code
+  if grep -q "^include = "$SambaLoader "$SambaFile"; then
+  else
+    sudo echo "include = $SambaLoader" >> "$SambaFile";
+  fi
+
 }

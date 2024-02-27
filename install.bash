@@ -40,6 +40,22 @@ SetPermissions
 DownloadTraefik
 #Install Traefik
 InstallTraefik
+
+#Setup Samba
+#Create a backup of the file system for samba
+  if [ ! -f "$SambaFile.backup" ]; then
+    cp $SambaFile $SambaFile.backup
+  fi
+
+#Create the folders if they dont exist
+  if [ ! -d "/Engine/Core/Samba/Confs" ]; then
+    MakeFolder "${SambaFolder/}Confs" --sudo
+  fi
+#  Insert the file include into /etc/samba/smb.conf
+  AppendSamba
+#  From this Point users just need to create Seperate Samba FIles within the /Engine/Core/Samba/Loader.conf
+# Please See https://github.com/Enginefw/ -> Samba -> Readme.md for more informaiton on how to create seperate Shares
+
 #End Script
 else
   echo "We cannot continue"
