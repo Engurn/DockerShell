@@ -7,8 +7,9 @@
 - [x] Detected If Packages are installed Including docker and git
 - [x] Made Traefik (Reverse Proxy) Available to download
 - [x] Installed Traefik
-- [ ] Setup Script to support for Samba Shares and volumes
-- [ ] Move Files From Engine to /Engine on installer
+- [x] Setup Script to support for Samba Shares and volumes
+- [ ] Add Support File For Acl
 - [ ] Create Docker networks
 - [ ] Create Updater and Boot file in /Engine/Core
+- - [ ] Move Files From Engine to /Engine on installer
 
