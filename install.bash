@@ -24,6 +24,7 @@ Packageinstall git
 Packageinstall docker.io
 Packageinstall docker-compose
 Packageinstall nano
+Packageinstall samba
 
 #Enter Continuation message
 read -p "files Downloaded Correctly Continue " Agree
