@@ -76,7 +76,7 @@ SetPermissions()
 
 AptUpdate()
 {
-   sudo  apt update && sudo apt upgrade
+   sudo  apt update -y && sudo apt upgrade -y
 }
 
 
@@ -88,6 +88,7 @@ Packageinstall()
       echo "$1 Installed"
   else
     echo "$1 Not installed"
+    sudo apt install $1 -y
   fi
 }
 
@@ -114,8 +115,9 @@ MakeFolder()
   if [ "$2" == "--sudo" ];
     sudo mkdir -p $1
   else
-    mkdir -p $1
+    mkdir -p "$1"
   fi
+
 }
 DownloadTraefik()
 {
@@ -139,5 +141,18 @@ AppendSamba()
   else
     sudo echo "include = $SambaLoader" >> "$SambaFile";
   fi
+}
 
+# Configure Docker and docker network settings
+
+DockerNetworkAdd()
+{
+   docker network create web
+   docker network create mysql
+   docker network create backend
+}
+
+DockerVolumesAdd()
+{
+  docker volume create Hosting
 }
