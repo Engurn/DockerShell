@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# DOwnload the required Files.
+# Download the required Files.
 
 # 1 Config File
   if [ ! -f ./Config.bash ]; then
@@ -17,7 +17,7 @@ do
   if [ -d "${Folder}" ]; then
     echo "Folder ${Folder}  Exist"
   else
-    GenerateFolder ${Folder} --sudo
+    GenerateFolder "${Folder}" --sudo
     fi
 
 done
