@@ -7,10 +7,11 @@
   fi
 
 source ./Config.bash
+#This script is inside the  Config.Bash Script
 DownloadRequiredFiles
 
+#Folder Creation
 Folders=("/${Includes}" "/${SambaFolder}" "/${Containers}")
-
 
 for Folder in "${Folders[@]}";
 do
@@ -19,5 +20,5 @@ do
   else
     GenerateFolder "${Folder}" --sudo
     fi
-
 done
+#Set Permissions
