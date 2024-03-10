@@ -22,3 +22,4 @@ do
     fi
 done
 #Set Permissions
+git
