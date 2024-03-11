@@ -12,5 +12,5 @@ Packageinstall()
     echo "$Package Not installed"
     sudo apt install "${Package}" -y
   fi
-  donez
+  done
 }
