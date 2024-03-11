@@ -15,6 +15,7 @@ CallSource()
     "Engine/Core/Includes/Groups.bash"
     "Engine/Core/Includes/Permissions.bash"
     "Engine/Core/Includes/Packages.bash"
+      "Engine/Core/Includes/Samba.bash"
 
   )
   

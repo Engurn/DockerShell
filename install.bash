@@ -7,6 +7,7 @@
 
 # Add the files.
 source ./Config.bash
+
 CallSource
 Packageinstall
 # Install Required Packages
@@ -25,8 +26,11 @@ do
   echo" Folder : ${Folder} Created"
  fi
 done
+
+#Add Samba Support
+AppendSambaFile
+echo Samba File Appended
+
 #Set Permissions
 SetPermissions "${RootFolder}"
 echo "Permissions for ${RootFolder} Have been set as root:docker"
-
-# Install 
