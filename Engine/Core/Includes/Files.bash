@@ -1,5 +1,3 @@
-
-
 GenerateFile()
 {
   file=$1

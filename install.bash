@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-# Download the required Files.
-
 # 1 Config File
   if [ ! -f ./Config.bash ]; then
   wget "https://raw.githubusercontent.com/EngineFw/DockerShell/main/Config.bash"
@@ -8,29 +5,15 @@
   echo "Config Exists";
   fi
 
-  Files=("Downloader" "Files" "Folders","Permissions","Groups")
-  for File in "${Files[@]}"
-  do
-    if [ -f ./${Includes}/${File}.bash ]; then
-           source "./$Includes/${File}.bash"
-    else
-        echo "Attempting to download"
-        wget "https://raw.githubusercontent.com/EngineFw/DockerShell/main/Engine/Core/Includes/${File}.bash"
-        source "./$Includes/${File}.bash"
-    fi
-  done
-
-exit
-
+# Add the files.
 source ./Config.bash
-#This script is inside the  Config.Bash Script
-DownloadRequiredFiles
+
 # Generate Groups (these must be done first to apply the groups permission)
 
-Groups=("docker","dev","Manager");
+Groups=("docker" "dev" "manager");
 for Group in "${Groups[@]}";
 do
-GenerateGroups "${Group}"
+  GenerateGroup $Group
 done
 
 #Folder Creation
@@ -41,9 +24,9 @@ do
   if [ -d "${Folder}" ]; then
     echo "Folder ${Folder}  Exist"
   else
-    GenerateFolder "${Folder}" --sudo
-    SetPermissions "${Folder}
+  GenerateFolder "${Folder}" --sudo
+  sudo chown root:docker "${Folder}"
+  sudo chmod ug=rwx,0-rwx "${Folder}"
     fi
 done
 #Set Permissions
-git

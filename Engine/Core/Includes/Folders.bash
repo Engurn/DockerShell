@@ -12,5 +12,10 @@ GenerateFolder()
   fi
 }
 
+Test()
+{
+  echo "Hello Martin this is a test";
+}
+
 
 

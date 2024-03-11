@@ -3,7 +3,6 @@
 DownloadFile()
 {
 #  $method $link $target
-
 method=$1
 if [ "${method}" == "--git" ]; then
   echo "git Download"
