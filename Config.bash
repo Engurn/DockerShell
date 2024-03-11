@@ -10,7 +10,7 @@ SambaFile=/etc/samba/smb.conf
 
 DownloadRequiredFiles()
 {
-  Files=("Downloader" "Files" "Folders","Permissions.bash","Groups.bash")
+  Files=("Downloader" "Files" "Folders","Permissions","Groups")
   for File in "${Files[@]}"
   do
     if [ -f ./${Includes}/${File}.bash ]; then

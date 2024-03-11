@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-# Download the required Files.
-
 # 1 Config File
   if [ ! -f ./Config.bash ]; then
   wget "https://raw.githubusercontent.com/EngineFw/DockerShell/main/Config.bash"
@@ -10,7 +7,6 @@ source ./Config.bash
 #This script is inside the  Config.Bash Script
 DownloadRequiredFiles
 # Generate Groups (these must be done first to apply the groups permission)
-
 Groups=("docker","dev","Manager");
 for Group in "${Groups[@]}";
 do
@@ -30,4 +26,3 @@ do
     fi
 done
 #Set Permissions
-git
