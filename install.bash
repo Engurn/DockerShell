@@ -9,6 +9,13 @@
 source ./Config.bash
 #This script is inside the  Config.Bash Script
 DownloadRequiredFiles
+# Generate Groups (these must be done first to apply the groups permission)
+
+Groups=("docker","dev","Manager");
+for Group in "${Groups[@]}";
+do
+GenerateGroups "${Group}"
+done
 
 #Folder Creation
 Folders=("/${Includes}" "/${SambaFolder}" "/${Containers}")
@@ -19,6 +26,7 @@ do
     echo "Folder ${Folder}  Exist"
   else
     GenerateFolder "${Folder}" --sudo
+    SetPermissions "${Folder}
     fi
 done
 #Set Permissions
