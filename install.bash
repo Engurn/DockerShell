@@ -7,15 +7,12 @@
 
 # Add the files.
 source ./Config.bash
+CallSource
+Packageinstall
+# Install Required Packages
 
 # Generate Groups (these must be done first to apply the groups permission)
-
-Groups=("docker" "dev" "manager");
-for Group in "${Groups[@]}";
-do
-  GenerateGroup $Group
-done
-
+  GenerateGroups
 #Folder Creation
 Folders=("/${Includes}" "/${SambaFolder}" "/${Containers}")
 
@@ -25,8 +22,11 @@ do
     echo "Folder ${Folder}  Exist"
   else
   GenerateFolder "${Folder}" --sudo
-  sudo chown root:docker "${Folder}"
-  sudo chmod ug=rwx,0-rwx "${Folder}"
-    fi
+  echo" Folder : ${Folder} Created"
+ fi
 done
 #Set Permissions
+SetPermissions "${RootFolder}"
+echo "Permissions for ${RootFolder} Have been set as root:docker"
+
+# Install 
