@@ -15,14 +15,14 @@ CallSource()
     "Engine/Core/Includes/Groups.bash"
     "Engine/Core/Includes/Permissions.bash"
     "Engine/Core/Includes/Packages.bash"
-      "Engine/Core/Includes/Samba.bash"
-
+    "Engine/Core/Includes/Samba.bash"
   )
   
   for File in "${Files[@]}";
   do
   if [ -f ./${File} ];
   then
+   echo "Name : ${File}"
    source ./${File}
   else
   {
