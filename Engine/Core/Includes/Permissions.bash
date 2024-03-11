@@ -7,7 +7,7 @@ SetPermissions()
 
 # Add Perssmisions here
 sudo chown root:docker $1
-sudo chmod ug=rwx,0-rwx $1
+sudo chmod ug=rwx,o-rwx $1
 }
 
 
@@ -48,8 +48,3 @@ sudo chmod ug=rwx,0-rwx $1
 #   }
 #   fi
 # }
-
-SetAcpPermissions()
-{
-# SetAclPermissionsHere
-}
