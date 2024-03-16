@@ -1,12 +1,18 @@
-AppendSamba()
-{
-#  Check if the file already Includeds  the following line of code
-  if grep -q "^include = "$SambaLoader "$SambaFile"; then
-  echo "Samba File Included"
+ConfigureSamba() {
+  sudo chown root:docker /etc/samba/smb.conf
+  sudo chmod ug=rwx,o-rwx /etc/samba/smb.conf  
+  #  Check if the file already Includeds  the following line of code
+  if grep -q "^include = "$SambaFolder/Loader.conf "$SambaFile"; then
+    echo "Samba File Included"
   else
-    sudo echo "include = $SambaLoader" >> "$SambaFile";
+    sudo echo "include = $SambaFolder/Loader.conf" >>"$SambaFile"
+    echo "files updated"
   fi
-    Loader=/Engine/Core/Samba/Loader.conf
+
+  Loader=/Engine/Core/Samba/Loader.conf
+  # sudo chown root:root /etc/samba/smb.conf
   sudo cp .${Loader} ${Loader}
-  sudo service smbd restart
+  sudo chown root:root /etc/samba/smb.conf
+    
+
 }

@@ -14,3 +14,11 @@ Packageinstall()
   fi
   done
 }
+
+RestartService()
+{
+  # $1 = $service name
+  service=$1
+  operation=$2
+  sudo service $service $operation
+}

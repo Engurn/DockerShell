@@ -1,5 +1,10 @@
-GenerateFile()
-{
+GenerateFile() {
+
   file=$1
-  touch $file
+
+  if [ "$2" == "--sudo" ]; then
+    sudo touch $file
+  else
+    touch $file
+  fi
 }

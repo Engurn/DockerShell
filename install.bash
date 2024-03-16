@@ -26,4 +26,38 @@ done
 #Set Permissions
 SetPermissions "${RootFolder}"
 echo "Permissions for ${RootFolder} Have been set as root:docker"
-AppendSamba
+
+# Add Docker Support
+
+DockerNetwork Web
+DockerNetwork Backend
+DockerNetwork Frontend
+DockerVolume Hosting
+SetPermissions /var/lib/docker/volumes
+DownloadTraefik
+CreateEnv
+# End Docker
+
+# Samba Configuration
+echo "Configuring Samba"
+ConfigureSamba
+echo "Samba Configured"
+# End Samba Configuration
+
+
+
+# Copy All Files
+echo "Copying All files from Engine to /Engine"
+sudo cp -R Engine /
+echo "File Copied"
+
+# Set Permissions
+echo "Setting permissions to Engine"
+SetPermissions /Engine
+echo "Permissions Set"
+# Start Traefik After copying
+StartTraefik
+# Reset Samba
+echo "Restarting Service Samba"
+RestartService smbd restart
+echo "Service Samba Restarted"

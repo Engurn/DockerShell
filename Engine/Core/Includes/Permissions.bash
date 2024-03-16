@@ -6,8 +6,8 @@ SetPermissions()
 # $1 is the foldername
 
 # Add Perssmisions here
-sudo chown root:docker $1
-sudo chmod ug=rwx,o-rwx $1
+sudo chown -R root:docker $1
+sudo chmod -R ug=rwx,o-rwx $1
 }
 
 
