@@ -28,3 +28,11 @@ DockerVolume() {
   volume=$1
   sudo docker volume create $volume
 }
+
+InstallPortainer()
+{
+  # Set the volume
+  docker volume create portainer_data
+  # Install Portainer
+  docker run -d -p 8100:8100 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+}

@@ -1,12 +1,33 @@
 # 1 Config File
   if [ ! -f ./Config.bash ]; then
-  wget "https://raw.githubusercontent.com/EngineFw/DockerShell/main/Config.bash"
+  wget "https://raw.githubusercontent.com/EngineFw/DockerShell/main/Engine/Config.bash" -O ./Engine/Config.bash
   else
   echo "Config Exists";
   fi
 
-# Add the files.
-source ./Config.bash
+  # Make Sure Original File Exisits
+if [ ! -f /Engine/Sources.bash ]; then
+    wget "https://raw.githubusercontent.com/EngineFw/DockerShell/main/Engine/Sources.bash" -O "./Engine/Sources.bash"
+fi
+
+# Connect to Config File()
+source ./Engine/Config.bash
+# Attached Sources File.
+source ./Engine/Sources.bash
+
+
+echo "Before Continuing Please Edit the following files Within Config File"
+read $Answer;
+if [ "$Answer" == "Continue" ]; then
+echo "We Can Continue"
+echo $InstallTreafik 
+echo $InstallPortainer
+else
+exit 0
+fi
+
+exit 0;
+
 
 CallSource
 Packageinstall
@@ -45,7 +66,6 @@ echo "Samba Configured"
 # End Samba Configuration
 
 
-
 # Copy All Files
 echo "Copying All files from Engine to /Engine"
 sudo cp -R Engine /
@@ -57,6 +77,7 @@ SetPermissions /Engine
 echo "Permissions Set"
 # Start Traefik After copying
 StartTraefik
+InstallPortainer
 # Reset Samba
 echo "Restarting Service Samba"
 RestartService smbd restart
