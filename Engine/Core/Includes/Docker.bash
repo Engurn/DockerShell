@@ -9,12 +9,13 @@ DownloadTraefik() {
 }
 
 StartTraefik() {
+  
   # Must have the Following installed
   if dpkg -l | grep docker.io && dpkg -l | grep docker-compose; then
     # the following snippet will install and overwrite any previous changes
     docker-compose -f /${traefik}/docker-compose.yml up -d
     echo "Traefik has Successfully been initiated"
-    else
+  else
     echo "Please Run Package Installer for docker.io and docker-compose"
   fi
 }
@@ -29,8 +30,7 @@ DockerVolume() {
   sudo docker volume create $volume
 }
 
-InstallPortainer()
-{
+InstallPortainer() {
   # Set the volume
   docker volume create portainer_data
   # Install Portainer

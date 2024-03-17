@@ -18,7 +18,6 @@ CallSource()
   do
   if [ -f ./${File} ];
   then
-   echo "Name : ${File}"
    source ./${File}
   else
   {

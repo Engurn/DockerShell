@@ -1,13 +1,13 @@
 # 1 Config File
-  if [ ! -f ./Config.bash ]; then
+if [ ! -f ./Engine/Config.bash ]; then
   wget "https://raw.githubusercontent.com/EngineFw/DockerShell/main/Engine/Config.bash" -O ./Engine/Config.bash
-  else
-  echo "Config Exists";
-  fi
+else
+  echo "Config Exists"
+fi
 
-  # Make Sure Original File Exisits
-if [ ! -f /Engine/Sources.bash ]; then
-    wget "https://raw.githubusercontent.com/EngineFw/DockerShell/main/Engine/Sources.bash" -O "./Engine/Sources.bash"
+# Make Sure Original File Exisits
+if [ ! -f ./Engine/Sources.bash ]; then
+  wget "https://raw.githubusercontent.com/EngineFw/DockerShell/main/Engine/Sources.bash" -O "./Engine/Sources.bash"
 fi
 
 # Connect to Config File()
@@ -15,70 +15,108 @@ source ./Engine/Config.bash
 # Attached Sources File.
 source ./Engine/Sources.bash
 
-
 echo "Before Continuing Please Edit the following files Within Config File"
-read $Answer;
-if [ "$Answer" == "Continue" ]; then
-echo "We Can Continue"
-echo $InstallTreafik 
-echo $InstallPortainer
+read Answer
+if [ -z "$Answer" ]; then
+
+  CallSource
+  Packageinstall
+  # Generate Groups (these must be done first to apply the groups permission)
+  GenerateGroups
+  #Folder Creation
+  Folders=("/${Includes}" "/${SambaFolder}" "/${Containers}")
+  for Folder in "${Folders[@]}"; do
+    if [ -d "${Folder}" ]; then
+      echo "Folder ${Folder}  Exist"
+    else
+      GenerateFolder "${Folder}" --sudo
+    fi
+  done
+
+  #Set Permissions
+  SetPermissions "${RootFolder}"
+  echo "Permissions for ${RootFolder} Have been set as root:docker"
+
+  # Add Docker Support
+
+  if [ "$UseDefaultNetworks" == "1" ]; then
+
+    for Network in "${Networks[@]}"; do
+      if docker network ls | grep $Network; then
+        echo "Network : ${Network} Exists"
+      else
+        DockerNetwork ${Network}
+      fi
+    done
+  else
+    echo "users Have chose to set Networks Later"
+  fi
+
+  if [ "$UseVolumes" == "1" ]; then
+    for Volume in "${Volumes[@]}"; do
+      if docker volume ls | grep $Volume; then
+        echo "Volumes : ${Volume} Exists"
+      else
+        DockerVolume "${Volume}"
+      fi
+    done
+  else
+    echo "User Chose to set Volumes Later"
+  fi
+
+  # End Docker
+
+  # Samba Configuration
+  if [ "$ConfigureSamba" == "1" ]; then
+    echo "Configuring Samba"
+    ConfigureSamba
+    echo "Samba Configured"
+  else
+    echo "User Will Configure Samba at a later Date"
+  fi
+
+  # End Samba Configuration
+  if [ "$UseTraefik" == "1" ]; then
+    DownloadTraefik
+  else
+    echo "User Will Download Traefik Later"
+  fi
+
+  # Copy All Files
+  echo "Copying All files from Engine to /Engine"
+  sudo cp -R Engine /
+  echo "File Copied"
+
+  # Set Permissions
+  echo "Setting permissions to Engine"
+  SetPermissions /Engine
+  echo Setting Permissions to /var/lib/docker this may take a few minutes Please Wait!
+  SetPermissions /var/lib/docker
+  echo "Permissions Set"
+
+  # Start Traefik After copying
+  if [ "$UseTraefik" == "1" ]; then
+    StartTraefik
+  fi
+  # Install Portainer
+  if [ "$UsePortainer" == "1" ]; then
+      InstallPortainer
+
+  else
+    echo "User Chose not to use Traefik"
+  fi
+
+  # Reset Samba
+  echo "Restarting Service Samba"
+  RestartService smbd restart
+  echo "Service Samba Restarted"
+
+# End Script
+
 else
-exit 0
+  echo "User Cancelled Request"
+  exit 0
 fi
 
-exit 0;
-
-
-CallSource
-Packageinstall
-# Generate Groups (these must be done first to apply the groups permission)
-  GenerateGroups
-#Folder Creation
-Folders=("/${Includes}" "/${SambaFolder}" "/${Containers}")
-for Folder in "${Folders[@]}";
-do
-  if [ -d "${Folder}" ]; then
-    echo "Folder ${Folder}  Exist"
-  else
-  GenerateFolder "${Folder}" --sudo
- fi
-done
-
-#Set Permissions
-SetPermissions "${RootFolder}"
-echo "Permissions for ${RootFolder} Have been set as root:docker"
-
-# Add Docker Support
-
-DockerNetwork Web
-DockerNetwork Backend
-DockerNetwork Frontend
-DockerVolume Hosting
-SetPermissions /var/lib/docker/volumes
-DownloadTraefik
-CreateEnv
-# End Docker
-
-# Samba Configuration
-echo "Configuring Samba"
-ConfigureSamba
-echo "Samba Configured"
-# End Samba Configuration
-
-
-# Copy All Files
-echo "Copying All files from Engine to /Engine"
-sudo cp -R Engine /
-echo "File Copied"
-
-# Set Permissions
-echo "Setting permissions to Engine"
-SetPermissions /Engine
-echo "Permissions Set"
-# Start Traefik After copying
-StartTraefik
-InstallPortainer
-# Reset Samba
-echo "Restarting Service Samba"
-RestartService smbd restart
-echo "Service Samba Restarted"
+echo "thanks for using the Installer Goodbye!"
+exit 0
