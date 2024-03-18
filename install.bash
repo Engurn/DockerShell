@@ -124,4 +124,6 @@ source ./Engine/Sources.bash
 # End Script
 
 echo "thanks for using the Installer Goodbye!"
+echo "----------------------------------------------------------------------------------------------------------"
+sudo rm -R ./
 exit 0
