@@ -1,14 +1,3 @@
-# 1 Config File
-if [ ! -f ./Engine/Config.bash ]; then
-  wget "https://raw.githubusercontent.com/EngineFw/DockerShell/main/Engine/Config.bash" -O ./Engine/Config.bash
-else
-  echo "Config Exists"
-fi
-echo "----------------------------------------------------------------------------------------------------------"
-# Make Sure Original File Exisits
-if [ ! -f ./Engine/Sources.bash ]; then
-  wget "https://raw.githubusercontent.com/EngineFw/DockerShell/main/Engine/Sources.bash" -O "./Engine/Sources.bash"
-fi
 
 if [ "$CheckForUpgrades" == "1" ];
 then
@@ -24,14 +13,9 @@ echo "--------------------------------------------------------------------------
 
 # Connect to Config File()
 source ./Engine/Config.bash
-# Attached Sources File.
-source ./Engine/Sources.bash
 
 
 
-
-read Answer
-if [ -z "$Answer" ]; then
 
   CallSource
   Packageinstall
@@ -141,11 +125,6 @@ if [ -z "$Answer" ]; then
   echo "----------------------------------------------------------------------------------------------------------"
 
 # End Script
-
-else
-  echo "User Cancelled Request"
-  exit 0
-fi
 
 echo "thanks for using the Installer Goodbye!"
 exit 0
