@@ -1,8 +1,6 @@
 
 GenerateGroups()
 {
-  groups=("docker" "member" "dev")
-
   for group in "${groups[@]}";
   do
       if [ $(getent group ${group}) ]; then

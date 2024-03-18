@@ -2,7 +2,6 @@
 Packageinstall()
 {
     sudo apt update -y
-    sudo apt upgrade -y
     Packages=("git" "docker.io" "docker-compose" "nano")
     for Package in "${Packages[@]}";
     do
