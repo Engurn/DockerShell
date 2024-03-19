@@ -9,8 +9,7 @@ DownloadTraefik() {
 }
 
 StartTraefik() {
-  
-  # Must have the Following installed
+  DockerNetwork web
   if dpkg -l | grep docker.io && dpkg -l | grep docker-compose; then
     # the following snippet will install and overwrite any previous changes
     docker-compose -f /${traefik}/docker-compose.yml up -d
