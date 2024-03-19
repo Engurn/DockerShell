@@ -2,7 +2,7 @@
 Packageinstall()
 {
     sudo apt update -y
-    Packages=("docker.io" "docker-compose" "nano")
+    Packages=("docker.io" "docker-compose" "nano","samba")
     for Package in "${Packages[@]}";
     do
   if dpkg -l | grep -q "${Package}" ; then
