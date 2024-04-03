@@ -26,5 +26,5 @@ RestartService()
   operation=$2
   sudo systemctl unmask $service
   sudo systemctl enable $service
-  sudo systemctl $operation.$service
+  sudo systemctl $operation $service
 }
