@@ -5,7 +5,7 @@ ConfigureSamba() {
   if grep -q "^include = "$SambaFolder/Loader.conf "$SambaFile"; then
     echo "Samba File Included"
   else
-    sudo echo "include = $SambaFolder/Loader.conf" >>"$SambaFile"
+    sudo echo "include = /$SambaFolder/Loader.conf" >>"$SambaFile"
     echo "files updated"
   fi
 

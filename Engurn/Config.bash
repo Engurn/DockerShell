@@ -9,7 +9,7 @@ SambaFile=/etc/samba/smb.conf
 UsePortainer="1"
 UseTraefik="1"
 ConfigureSamba="1"
-Install_EngurnServer="0"
+EngurnServer="1"
 # Docker related Settings
 UseVolumes="1"
 UseDefaultNetworks="1"

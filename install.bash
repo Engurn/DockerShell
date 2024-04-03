@@ -74,10 +74,27 @@ source ./Engurn/Sources.bash
     echo "Configuring Samba"
     ConfigureSamba
     echo "Samba Configured"
+
+     # Reset Samba
+  echo "Restarting Service Samba"
+  RestartService restart samba
+  echo "Service Samba Restarted"
+
   else
     echo "User Will Configure Samba at a later Date"
   fi
   echo "----------------------------------------------------------------------------------------------------------"
+
+  # Samba Configuration
+  if [ "$UseEngurnServer" == "1" ]; then
+    echo "Downloading EngurnServer"
+    git clone https://github.com/Engurn/EngurnServer $Containers/EngurnServer
+    echo "EngurnServer Downloaded"
+  else
+    echo "User Will Configure Samba at a later Date"
+  fi
+  echo "----------------------------------------------------------------------------------------------------------"
+
 
   # End Samba Configuration
   if [ "$UseTraefik" == "1" ]; then
@@ -112,12 +129,6 @@ source ./Engurn/Sources.bash
   else
     echo "User Chose not to use Traefik"
   fi
-  echo "----------------------------------------------------------------------------------------------------------"
-
-  # Reset Samba
-  echo "Restarting Service Samba"
-  RestartService restart samba
-  echo "Service Samba Restarted"
 
   echo "----------------------------------------------------------------------------------------------------------"
 
