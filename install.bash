@@ -116,7 +116,7 @@ source ./Engine/Sources.bash
 
   # Reset Samba
   echo "Restarting Service Samba"
-  RestartService smbd restart
+  RestartService restart smbd
   echo "Service Samba Restarted"
 
   echo "----------------------------------------------------------------------------------------------------------"
