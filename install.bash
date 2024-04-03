@@ -16,6 +16,7 @@ source ./Engurn/Config.bash
 source ./Engurn/Sources.bash
   CallSource
   Packageinstall
+  exit 0
   # Generate Groups (these must be done first to apply the groups permission)
   GenerateGroups
   #Folder Creation
@@ -97,7 +98,7 @@ source ./Engurn/Sources.bash
   echo "Setting permissions to Engurn"
   SetPermissions /Engurn
   echo Setting Permissions to /var/lib/docker this may take a few minutes Please Wait!
-  SetPermissions /var/lib/docker
+  SetPermissions /var/lib/docker/
   echo "Permissions Set"
   echo "----------------------------------------------------------------------------------------------------------"
 
@@ -116,7 +117,7 @@ source ./Engurn/Sources.bash
 
   # Reset Samba
   echo "Restarting Service Samba"
-  RestartService restart smbd
+  RestartService restart samba
   echo "Service Samba Restarted"
 
   echo "----------------------------------------------------------------------------------------------------------"
