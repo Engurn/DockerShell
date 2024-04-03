@@ -86,7 +86,7 @@ source ./Engurn/Sources.bash
   echo "----------------------------------------------------------------------------------------------------------"
 
   # Samba Configuration
-  if [ "$UseEngurnServer" == "1" ]; then
+  if [ "$EngurnServer" == "1" ]; then
     echo "Downloading EngurnServer"
     git clone https://github.com/Engurn/EngurnServer $Containers/EngurnServer
     echo "EngurnServer Downloaded"
