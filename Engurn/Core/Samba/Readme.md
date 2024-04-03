@@ -3,7 +3,7 @@
 The Samba Conf files are a set of individual .conf files desihgned to make Managing samba shares more essier.
 
 ## How it works?
-The Samba Shares Are placed in a folder located under /Engine/Samba/Confs, Permissions can then be setup to 
+The Samba Shares Are placed in a folder located under /Engurn/Samba/Confs, Permissions can then be setup to 
 only give specific permissions to a user or group.
 
 I created this layout simply to avoid the constant need to keep using sudo permissions within the /etc/samba folder, sudo permissions are only reqiuired if samba is being reloaded.
@@ -28,7 +28,7 @@ sudo nano /etc/samba/smb.conf
 at the bottom of the file simply add the following line of code
 
 ```
-include=/Engine/Core/Samba/Loader.conf
+include=/Engurn/Core/Samba/Loader.conf
 ```
 Save the file and then restart Samba using the following command
 
@@ -38,15 +38,15 @@ or
 sudo service smbd reload
 ```
 
-Please also Make note that adding additional conf files within the /Engine/Core/Samba/Confs folder 
+Please also Make note that adding additional conf files within the /Engurn/Core/Samba/Confs folder 
 will also reqiuore you to reload samba with the command listed above Sudo permissions will be reqiored.
 
-In order to add Files to the samba Loadser simpoy dd the following lines to your Loader.conf file located at /Engine/Core/Samba/Loader.conf
+In order to add Files to the samba Loadser simpoy dd the following lines to your Loader.conf file located at /Engurn/Core/Samba/Loader.conf
 
 this process is the same as the smb.conf file setup but doesnt require sudo based permissions
 ```
-include=/Engine/Core/Samba/Docker.conf
-include=/Engine/Core/Samba/Volumes.conf
+include=/Engurn/Core/Samba/Docker.conf
+include=/Engurn/Core/Samba/Volumes.conf
 ```
 
 * in order to use multiple conf files just create a new line with a new include command
@@ -71,8 +71,8 @@ Although this is setup as a manual Appoach i do intend to to make this process m
 
 ### How will this work
 
-in order for this to work the user will simply add the conf file to /Engine/Core/Samba/Confs and then run
+in order for this to work the user will simply add the conf file to /Engurn/Core/Samba/Confs and then run
 
 ```
-bash /Engine/Core/Samba/update.bash
+bash /Engurn/Core/Samba/update.bash
 ```

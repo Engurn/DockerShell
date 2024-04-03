@@ -1,4 +1,4 @@
-
+Engurn
 if [ "$CheckForUpgrades" == "1" ];
 then
     sudo apt upgrade -y
@@ -12,8 +12,8 @@ echo "Installation started"
 echo "----------------------------------------------------------------------------------------------------------"
 
 # Connect to Config File()
-source ./Engine/Config.bash
-source ./Engine/Sources.bash
+source ./Engurn/Config.bash
+source ./Engurn/Sources.bash
   CallSource
   Packageinstall
   # Generate Groups (these must be done first to apply the groups permission)
@@ -88,14 +88,14 @@ source ./Engine/Sources.bash
   echo "----------------------------------------------------------------------------------------------------------"
 
   # Copy All Files
-  echo "Copying All files from Engine to /Engine"
-  sudo cp -R Engine /
+  echo "Copying All files from Engurn to /Engurn"
+  sudo cp -R Engurn /
   echo "File Copied"
   echo "----------------------------------------------------------------------------------------------------------"
 
   # Set Permissions
-  echo "Setting permissions to Engine"
-  SetPermissions /Engine
+  echo "Setting permissions to Engurn"
+  SetPermissions /Engurn
   echo Setting Permissions to /var/lib/docker this may take a few minutes Please Wait!
   SetPermissions /var/lib/docker
   echo "Permissions Set"

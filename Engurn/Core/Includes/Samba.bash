@@ -9,7 +9,7 @@ ConfigureSamba() {
     echo "files updated"
   fi
 
-  Loader=/Engine/Core/Samba/Loader.conf
+  Loader=/Engurn/Core/Samba/Loader.conf
   # sudo chown root:root /etc/samba/smb.conf
   sudo cp .${Loader} ${Loader}
   sudo chown root:root /etc/samba/smb.conf
