@@ -7,10 +7,15 @@ Packageinstall()
     "docker-compose"
     "nano"
     "samba"
-    )
     for Package in "${Packages[@]}";
     do
-    sudo apt install ${Package} -y
+        sudo apt install ${Package} -y
+  if dpkg -l | grep -q "${Package}" ; then
+      echo "$Package Installed No need to install"
+  else
+    echo "$Package Has been installed"
+
+  fi
   done
 }
 
