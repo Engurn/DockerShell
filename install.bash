@@ -16,7 +16,6 @@ source ./Engurn/Config.bash
 source ./Engurn/Sources.bash
   CallSource
   Packageinstall
-  exit 0
   # Generate Groups (these must be done first to apply the groups permission)
   GenerateGroups
   #Folder Creation
