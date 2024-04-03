@@ -19,5 +19,5 @@ RestartService()
   # $1 = $service name
   service=$1
   operation=$2
-  sudo service $service $operation
+  sudo systemctl $operation $service
 }
