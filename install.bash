@@ -1,10 +1,4 @@
-Engurn
-if [ "$CheckForUpgrades" == "1" ];
-then
-    sudo apt upgrade -y
-    else 
-    echo "Manual Upgrade turned on Please turn this on in the config file"
-fi
+
 echo "----------------------------------------------------------------------------------------------------------"
 echo "Before Continuing Please Edit the following files Within Config File, Press Enter to continue"
 echo "----------------------------------------------------------------------------------------------------------"
@@ -12,8 +6,8 @@ echo "Installation started"
 echo "----------------------------------------------------------------------------------------------------------"
 
 # Connect to Config File()
-source ./Engurn/Config.bash
-source ./Engurn/Sources.bash
+source ./Lazarus/Config.bash
+source ./Lazarus/Sources.bash
   CallSource
   Packageinstall
   # Generate Groups (these must be done first to apply the groups permission)
@@ -27,14 +21,6 @@ source ./Engurn/Sources.bash
       GenerateFolder "${Folder}" --sudo
     fi
   done
-
-  echo "----------------------------------------------------------------------------------------------------------"
-  echo "Folders Created"
-  echo "----------------------------------------------------------------------------------------------------------"
-  #Set Permissions
-  SetPermissions "${RootFolder}"
-  echo "Permissions for ${RootFolder} Have been set as root:docker"
-  echo "----------------------------------------------------------------------------------------------------------"
 
   echo "Configuring Docker"
   echo "----------------------------------------------------------------------------------------------------------"
@@ -86,14 +72,14 @@ source ./Engurn/Sources.bash
   echo "----------------------------------------------------------------------------------------------------------"
 
   # Samba Configuration
-  if [ "$EngurnServer" == "1" ]; then
-    echo "Downloading EngurnServer"
-    git clone https://github.com/Engurn/EngurnServer $Containers/EngurnServer
-    echo "EngurnServer Downloaded"
-  else
-    echo "User Will Configure Samba at a later Date"
-  fi
-  echo "----------------------------------------------------------------------------------------------------------"
+  # if [ "$LazarusServer" == "1" ]; then
+  #   echo "Downloading LazarusServer"
+  #   git clone https://github.com/Lazarus/LazarusServer $Containers/LazarusServer
+  #   echo "LazarusServer Downloaded"
+  # else
+  #   echo "User Will Configure Samba at a later Date"
+  # fi
+  # echo "----------------------------------------------------------------------------------------------------------"
 
 
   # End Samba Configuration
@@ -104,17 +90,15 @@ source ./Engurn/Sources.bash
   fi
   echo "----------------------------------------------------------------------------------------------------------"
 
-  # Copy All Files
-  echo "Copying All files from Engurn to /Engurn"
-  sudo cp -R Engurn /
-  echo "File Copied"
-  echo "----------------------------------------------------------------------------------------------------------"
-
+ 
   # Set Permissions
-  echo "Setting permissions to Engurn"
-  SetPermissions /Engurn
   echo Setting Permissions to /var/lib/docker this may take a few minutes Please Wait!
-  SetPermissions /var/lib/docker/
+  if [ -d "/var/lib/docker" ]; then
+  SetUserAcl $USER /var/lib/docker
+  else if [ -d "/var/snap/docker" ]
+  SetUserAcl $USER /var/snap/docker
+  fi
+
   echo "Permissions Set"
   echo "----------------------------------------------------------------------------------------------------------"
 
