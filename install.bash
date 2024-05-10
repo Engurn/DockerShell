@@ -92,11 +92,13 @@ source ./Lazarus/Sources.bash
 
  
   # Set Permissions
-  echo Setting Permissions to /var/lib/docker this may take a few minutes Please Wait!
+  echo Setting Permissions to Docker Volumes this may take a few minutes Please Wait!
   if [ -d "/var/lib/docker" ]; then
   SetUserAcl $USER /var/lib/docker
-  else if [ -d "/var/snap/docker" ]
+  SetGroupAcl docker /var/lib/docker
+  elif [ -d "/var/snap/docker" ]; then
   SetUserAcl $USER /var/snap/docker
+  SetGroupAcl docker /var/snap/docker
   fi
 
   echo "Permissions Set"
