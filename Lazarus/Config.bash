@@ -1,5 +1,5 @@
 # Do not Change these settings, Doing do could Make the installation unstable or become broken"
-RootFolder=/test/LazarusOS/Lazarus/Core
+RootFolder=/LazarusOS/Lazarus/Core
 Containers=$RootFolder/Containers
 SambaFolder=$RootFolder/Samba
 Includes=$RootFolder/Includes
