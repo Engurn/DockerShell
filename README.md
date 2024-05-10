@@ -1,19 +1,36 @@
-# EngineShell
-# The Docker Shell Installer
+# <p align="center">Lazarus Installer</p>
 
-## What is EngineShell
-Engine Shell is a Installer Script designed to setup and install Docker all the Required Folders, Networks and volumes on A ubuntu Based System.
+### Release Information
+Current Installer Version : 1.0.1 
+Release Version : 1.0
 
-i designed this project mainly to save myself time when it comes to installing docker and all the required components needed.
+## What is the Lazarus Installer
+Lazarus Installer Is a ubuntu Based Installer Script designed to Simplyfy the Configuration a docker Installation and Additional Permissions.
 
-the project is free to use without any warranty.
+
+This Script can be configured to suit the users needs by modifying the Config bash file located inside the Lazarus Folder.
+
+This project is open Source and free to use but does come with no warranty, this project should only be used for Development Purposes and not used in production.
+
+###  ** the project is free to use without any warranty. **
+
+
+## Whats included
+
+* Easy Config FIle
+* Installation Bash file install the Script
+* Acl Permissions#
+* Group Managaement
+* File and Folder Options
+* Package Installation
+* Samba Management Options.
+
 
 ## Requirments
 In order to use this system you will be required to have a Ubunutu or debian based system that uses the Apt Package Manager.
 
-It is recommended as part of the installation process to have Wget installed.
+It is recommended as part of the installation process to have git, docker and docker compose installed.
 
-## Whats included in this version of Engine shell
 
 # What We need to do
 
@@ -23,8 +40,5 @@ It is recommended as part of the installation process to have Wget installed.
 - [x] Made Traefik (Reverse Proxy) Available to download
 - [x] Installed Traefik
 - [x] Setup Script to support for Samba Shares and volumes
-- [ ] Add Support File For Acl
-- [x] Create Docker networks
-- [ ] Create Updater and Boot file in /Engine/Core
-- [x] Move Files From Engine to /Engine on installer
-
+- [x] Add Support File For Acl
+- [x] Create Docker network
