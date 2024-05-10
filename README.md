@@ -2,6 +2,7 @@
 
 ### Release Information
 Current Installer Version : 1.0.1 
+
 Release Version : 1.0
 
 ## What is the Lazarus Installer
