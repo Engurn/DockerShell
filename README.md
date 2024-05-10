@@ -24,6 +24,7 @@ This project is open Source and free to use but does come with no warranty, this
 * File and Folder Options
 * Package Installation
 * Samba Management Options.
+* Portainer Docker Manager
 
 
 ## Requirments
